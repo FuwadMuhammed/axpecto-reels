@@ -1,0 +1,237 @@
+{
+  "title": "Who AI picks when you ask for the best sneaker",
+  "category": "ai-search",
+  "summary": "Broad AI questions like best sneaker tend to surface famous brands such as Nike and Adidas, so smaller brands should aim for specific needs the web can connect them to.",
+  "sources": [
+    "Google Search Central: Creating helpful, reliable, people-first content",
+    "Google Search Central: AI features and your website",
+    "Google Search Central: Write high quality product reviews"
+  ],
+  "scenes": [
+    {
+      "type": "hook",
+      "voice": "Someone asks AI for the best sneaker. Nike. Adidas. Most other brands stay invisible.",
+      "kicker": "Sneaker story",
+      "headline": "Most sneaker brands stay",
+      "reveal": "invisible.",
+      "stamp": "SHOES",
+      "mood": "surprised"
+    },
+    {
+      "type": "ranking",
+      "voice": "Old Google gave you ten blue links. You could scroll, compare, and discover a small brand.",
+      "kicker": "Back then",
+      "query": "best sneakers",
+      "results": [
+        "shoeguide.example",
+        "runnerslab.example",
+        "sneakerdesk.example",
+        "strideandco.example",
+        "fitreviews.example"
+      ],
+      "highlight": 3,
+      "to": 1,
+      "on": {
+        "list": "links",
+        "move": "small"
+      },
+      "emph": [
+        "scroll",
+        "compare"
+      ],
+      "mood": "smile"
+    },
+    {
+      "type": "chat",
+      "voice": "Now people ask ChatGPT, Perplexity or Gemini. They get one short answer. It might name Nike, Adidas and maybe one more.",
+      "kicker": "Right now",
+      "question": "What's the best sneaker?",
+      "assistants": [
+        "ChatGPT",
+        "Perplexity",
+        "Gemini"
+      ],
+      "answerTitle": "Nike, Adidas, one more",
+      "answerSub": "Example answer",
+      "on": {
+        "ask": "ask",
+        "answer": "answer"
+      },
+      "emph": [
+        "one",
+        "short"
+      ],
+      "mood": "think"
+    },
+    {
+      "type": "cards",
+      "voice": "Why those names? AI tends to reflect what the web says most. Reviews. Comparison lists. Forum threads where real runners argue.",
+      "kicker": "Why them",
+      "cards": [
+        {
+          "big": "REV",
+          "label": "Reviews",
+          "line": "Real wear, real detail"
+        },
+        {
+          "big": "TOP",
+          "label": "Comparison lists",
+          "line": "Who gets named"
+        },
+        {
+          "big": "TALK",
+          "label": "Forum threads",
+          "line": "What runners say"
+        }
+      ],
+      "highlight": [
+        0,
+        1,
+        2
+      ],
+      "on": {
+        "cards": [
+          "Reviews",
+          "Comparison",
+          "Forum"
+        ]
+      },
+      "mood": "puzzled"
+    },
+    {
+      "type": "versus",
+      "voice": "Here is the turn. Best sneaker is a fight for giants. Best sneaker for flat feet is a much smaller race.",
+      "kicker": "The turn",
+      "headline": {
+        "left": "Broad",
+        "sign": "vs",
+        "right": "Specific"
+      },
+      "left": {
+        "title": "Broad",
+        "sub": "Best sneaker",
+        "icon": "search"
+      },
+      "right": {
+        "title": "Specific",
+        "sub": "Best for flat feet",
+        "icon": "star"
+      },
+      "on": {
+        "left": "giants",
+        "right": "flat"
+      },
+      "emph": [
+        "smaller"
+      ],
+      "mood": "wink"
+    },
+    {
+      "type": "checklist",
+      "voice": "Try this. Pick one need you serve best. Publish an honest guide on it. Then earn reviews that mention that exact problem.",
+      "kicker": "Try this",
+      "items": [
+        {
+          "title": "Pick one need",
+          "detail": "Flat feet, wide fit, trail",
+          "icon": "search"
+        },
+        {
+          "title": "Publish a guide",
+          "detail": "Honest and specific",
+          "icon": "page"
+        },
+        {
+          "title": "Earn real reviews",
+          "detail": "Naming that exact problem",
+          "icon": "star"
+        }
+      ],
+      "on": {
+        "items": [
+          "Pick",
+          "guide",
+          "reviews"
+        ]
+      },
+      "mood": "happy"
+    },
+    {
+      "type": "cta",
+      "voice": "Want to see which brands AI names in your market? Try Axpecto. It asks AI what your customers ask, and shows who gets recommended.",
+      "kicker": "Try Axpecto",
+      "question": "Does AI name your brand?",
+      "rows": [
+        {
+          "assistant": "ChatGPT",
+          "ok": true
+        },
+        {
+          "assistant": "Perplexity",
+          "ok": false
+        },
+        {
+          "assistant": "Gemini",
+          "ok": true
+        }
+      ],
+      "on": {
+        "brand": "Axpecto",
+        "rows": "recommended"
+      },
+      "mood": "smile"
+    }
+  ],
+  "post": {
+    "caption": "Ask AI for the best sneaker and you may only hear a few famous names, like Nike or Adidas. Broad questions favor brands the whole web already talks about. Smaller brands have a better shot on specific needs, like the best sneaker for flat feet. See which brands AI names in your market at axpecto.com.",
+    "hashtags": [
+      "#axpecto",
+      "#aisearch",
+      "#generativeengineoptimization",
+      "#brandvisibility",
+      "#seo"
+    ],
+    "youtubeTitle": "Who AI picks when you ask for the best sneaker",
+    "xText": "Ask AI for the best sneaker and a few giants take the answer. Ask for the best sneaker for flat feet and the race gets smaller. axpecto.com",
+    "keywords": [
+      "AI brand visibility",
+      "ecommerce SEO",
+      "generative engine optimization",
+      "answer engine optimization",
+      "AI product recommendations",
+      "long tail keywords",
+      "brand mentions",
+      "AI search for ecommerce"
+    ]
+  },
+  "carousel": {
+    "cover": "Who does AI pick for 'best sneaker'?",
+    "slides": [
+      {
+        "title": "One answer, few brands",
+        "body": "Ten blue links left room to browse. A short AI answer may name only a few brands."
+      },
+      {
+        "title": "Famous names have an edge",
+        "body": "Brands like Nike and Adidas are discussed everywhere, so broad questions tend to surface them."
+      },
+      {
+        "title": "AI reflects the web",
+        "body": "Reviews, comparison lists and forum threads all shape which brands get connected to a need."
+      },
+      {
+        "title": "Go specific",
+        "body": "'Best sneaker' is a fight for giants. 'Best sneaker for flat feet' is a much smaller race."
+      },
+      {
+        "title": "Own one need",
+        "body": "Publish an honest guide on it, then earn reviews that mention that exact problem."
+      }
+    ],
+    "caption": "You may not beat a giant on a broad question, but you can become the clear answer to a narrow one. Choose the need you serve best and make the web connect you to it. Check how AI talks about your market at axpecto.com."
+  },
+  "story": {
+    "kicker": "New reel",
+    "line": "Ask AI for the best sneaker. Who does it pick?"
+  }
+}
