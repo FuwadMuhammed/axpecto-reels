@@ -168,14 +168,13 @@
     }
   ],
   "post": {
-    "caption": "A common myth: if AI names your business, you are visible. But a mention comes from the model's memory, while a citation means your page was used as the source. Ask the questions your customers ask, read which sources are cited, and check that AI crawlers are not blocked in robots.txt. To see how AI answers about your business, visit axpecto.com.",
+    "caption": "AI can name your business without ever reading your website.\n\nA mention comes from the model's memory. A citation means AI used your page as the source. For real AI search visibility, you want both.\n\nThree quick checks:\n1. Ask ChatGPT, Perplexity and Gemini the questions your customers ask\n2. See which sources get cited in the answers and in Google AI Overviews\n3. Make sure robots.txt isn't blocking AI crawlers\n\nKeywords: AI search optimization, generative engine optimization (GEO), answer engine optimization (AEO), AI visibility, AI citations, ChatGPT SEO, Google AI Overviews, technical SEO, robots.txt\n\nSee how AI answers about your business at axpecto.com",
     "hashtags": [
       "#axpecto",
-      "#seo",
-      "#geo",
-      "#aeo",
       "#aisearch",
-      "#digitalmarketing"
+      "#generativeengineoptimization",
+      "#answerengineoptimization",
+      "#seo"
     ],
     "youtubeTitle": "Mentioned by AI vs cited by AI: the difference",
     "xText": "Being mentioned by AI is not the same as being cited. A mention is memory; a citation means your page was the source. axpecto.com"
