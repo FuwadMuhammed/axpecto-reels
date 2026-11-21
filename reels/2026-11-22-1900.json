@@ -1,0 +1,216 @@
+{
+  "title": "A mention is memory, a citation is a receipt",
+  "category": "mentioned-vs-cited",
+  "summary": "A made-up bakery that moved is named by an AI with its old address from memory, while a search-backed answer cites the live page, showing that a mention can be stale but a citation can be checked.",
+  "sources": [
+    "OpenAI: Introducing ChatGPT search",
+    "Google Search Central: AI features and your website",
+    "Perplexity Help Center: How does Perplexity work?",
+    "Google Search Central: Introduction to robots.txt"
+  ],
+  "scenes": [
+    {
+      "type": "hook",
+      "voice": "An AI can remember your shop and still get the address wrong.",
+      "kicker": "AI answers",
+      "headline": "AI knew the shop but got it",
+      "reveal": "wrong.",
+      "stamp": "2026",
+      "mood": "puzzled",
+      "emph": [
+        "address",
+        "wrong"
+      ]
+    },
+    {
+      "type": "chat",
+      "voice": "Bakehouse Lane is a made up bakery that moved last spring. Someone asks ChatGPT for the best bakery nearby.",
+      "kicker": "The story",
+      "question": "Best bakery near me?",
+      "assistants": [
+        "ChatGPT"
+      ],
+      "answerTitle": "Bakehouse Lane",
+      "answerSub": "Old address, no source link",
+      "links": false,
+      "on": {
+        "ask": "best",
+        "answer": "nearby"
+      },
+      "mood": "think"
+    },
+    {
+      "type": "versus",
+      "voice": "The old address came from memory. A model learns from a snapshot of the past. That is a mention.",
+      "kicker": "Mention",
+      "headline": {
+        "left": "Mention",
+        "sign": "≠",
+        "right": "Citation"
+      },
+      "left": {
+        "title": "Mention",
+        "sub": "Recalled from memory",
+        "icon": "memory"
+      },
+      "right": {
+        "title": "Citation",
+        "sub": "Page read for the answer",
+        "icon": "link"
+      },
+      "on": {
+        "left": "memory"
+      },
+      "emph": [
+        "memory",
+        "snapshot"
+      ],
+      "mood": "surprised"
+    },
+    {
+      "type": "browser",
+      "voice": "Now it searches the web, reads the bakery's page, and links to it. The new address appears. That is a citation.",
+      "kicker": "Citation",
+      "url": "bakehouse.example/find",
+      "title": "Find Bakehouse Lane",
+      "visitor": true,
+      "reaction": "!",
+      "on": {
+        "page": "page",
+        "visitor": "reads"
+      },
+      "emph": [
+        "links",
+        "citation"
+      ],
+      "mood": "happy"
+    },
+    {
+      "type": "cards",
+      "voice": "Here is the part people miss. A mention cannot be checked. A citation is a receipt that shows the source.",
+      "kicker": "The turn",
+      "cards": [
+        {
+          "big": "MEM",
+          "label": "Mention",
+          "line": "Cannot be checked"
+        },
+        {
+          "big": "LINK",
+          "label": "Citation",
+          "line": "Shows the source"
+        }
+      ],
+      "highlight": [
+        1
+      ],
+      "on": {
+        "cards": [
+          "mention",
+          "citation"
+        ]
+      },
+      "emph": [
+        "receipt",
+        "source"
+      ],
+      "mood": "smile"
+    },
+    {
+      "type": "checklist",
+      "voice": "Try this today. Ask an assistant your customer's question and look for your link. Then check robots dot txt is not blocking AI crawlers.",
+      "kicker": "Check today",
+      "items": [
+        {
+          "title": "Look for your link",
+          "detail": "Named, or cited as the source?",
+          "icon": "search"
+        },
+        {
+          "title": "Check robots.txt",
+          "detail": "Is it blocking AI crawlers?",
+          "icon": "robot"
+        }
+      ],
+      "on": {
+        "items": [
+          "link",
+          "robots"
+        ]
+      },
+      "emph": [
+        "link",
+        "crawlers"
+      ],
+      "mood": "wink"
+    },
+    {
+      "type": "cta",
+      "voice": "Want to see what AI really says about you? Try Axpecto. It asks AI what your customers ask, and shows who gets recommended and cited.",
+      "kicker": "Try Axpecto",
+      "question": "What does AI say about you?",
+      "rows": [
+        {
+          "assistant": "ChatGPT",
+          "ok": true
+        },
+        {
+          "assistant": "Perplexity",
+          "ok": false
+        },
+        {
+          "assistant": "Gemini",
+          "ok": true
+        }
+      ],
+      "on": {
+        "brand": "Axpecto",
+        "rows": "AI"
+      },
+      "emph": [
+        "recommended",
+        "cited"
+      ],
+      "mood": "happy"
+    }
+  ],
+  "post": {
+    "caption": "An AI can name your business and still give old details, because a mention comes from the model's memory. A citation means the assistant read your page and used it as the source. One can be stale. The other can be checked. You can see how your business shows up at axpecto.com.",
+    "hashtags": [
+      "#axpecto",
+      "#seo",
+      "#geo",
+      "#aeo",
+      "#aisearch",
+      "#digitalmarketing"
+    ],
+    "youtubeTitle": "A mention is memory, a citation is a receipt: AI answers",
+    "xText": "An AI mention comes from memory and can be out of date. A citation shows the page it used. Check which one you get at axpecto.com"
+  },
+  "carousel": {
+    "cover": "AI named your business. Is that enough?",
+    "slides": [
+      {
+        "title": "A mention comes from memory",
+        "body": "A model learns from a snapshot of the past, so it can repeat details that were true then, like an old address."
+      },
+      {
+        "title": "A citation comes from a page",
+        "body": "When an assistant searches the web, it can read a page and link to it as the source of its answer."
+      },
+      {
+        "title": "A citation is checkable",
+        "body": "You can click it and see where the answer came from. A mention gives you nothing to verify."
+      },
+      {
+        "title": "Two quick checks",
+        "body": "Ask an assistant your customer's question and look for your link. Then check robots.txt is not blocking AI crawlers."
+      }
+    ],
+    "caption": "Being named by an AI feels like a win, but the name may come from old memory. A cited page is one the assistant actually used. Look at which links appear in the answers your customers see. You can run that check at axpecto.com."
+  },
+  "story": {
+    "kicker": "New reel",
+    "line": "AI remembered the bakery. It still got the address wrong."
+  }
+}
