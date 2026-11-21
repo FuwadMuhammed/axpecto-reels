@@ -1,1 +1,10 @@
-{ "channels": [] }
+{
+  "channels": [
+    {
+      "service": "instagram",
+      "name": "AI Search Daily",
+      "id": "6af2bab762b70b94b0de263c",
+      "key": "BUFFER_API_KEY_1"
+    }
+  ]
+}
