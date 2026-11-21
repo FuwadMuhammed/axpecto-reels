@@ -274,6 +274,8 @@ export const Chat: React.FC = () => {
   const chipY = 840
   const linksOut = progress(frame, ask - 8, 12)
   const mid = cx[Math.floor(n / 2)]
+  // Consumer brands named in the answer replace the default map art.
+  const brands = s.answerTitle.split(/[\s,]+/).map(logoFor).filter((l): l is 'nike' | 'adidas' => l === 'nike' || l === 'adidas')
   return (
     <Stage>
       <Kicker text={s.kicker} />
@@ -310,12 +312,16 @@ export const Chat: React.FC = () => {
       <Pop at={ans} cx={540} cy={1090}>
         <Card x={140} y={980} w={780} h={250} r={44}>
           <rect x={28} y={28} width={210} height={194} rx={30} fill={look.lav} />
+          {brands.length ? brands.slice(0, 2).map((b, i, all) => (
+            <Logo key={b} name={b} x={133} y={all.length === 1 ? 125 : 78 + i * 88} size={b === 'nike' ? 48 : 68} />
+          )) : <>
           <path d="M 48 120 Q 110 80 150 130 T 228 110" fill="none" stroke="#FFFFFF" strokeWidth={14} strokeLinecap="round" />
           <path d="M 70 210 L 120 60" stroke="#FFFFFF" strokeWidth={10} strokeLinecap="round" />
           <g transform="translate(140 118)">
             <path d="M 0 40 C -30 4 -34 -8 -34 -20 A 34 34 0 1 1 34 -20 C 34 -8 30 4 0 40 Z" fill="url(#bluePill)" filter="url(#softSm)" />
             <circle cx={0} cy={-20} r={12} fill="#fff" />
           </g>
+          </>}
           <g transform="translate(224 210)"><circle r={30} fill="#fff" filter="url(#softSm)" /><Sparkle x={0} y={0} r={17} /></g>
           <Txt x={276} y={92} size={40} weight={800}>{s.answerTitle}</Txt>
           {wrap(s.answerSub, 26).slice(0, 2).map((l, i) => <Txt key={i} x={276} y={138 + i * 36} size={28} weight={600} color={look.muted}>{l}</Txt>)}

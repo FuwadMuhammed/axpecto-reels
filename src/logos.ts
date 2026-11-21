@@ -8,6 +8,8 @@ export const LOGOS = {
   gemini: { file: 'gemini.svg', aspect: 1 },
   claude: { file: 'claude.svg', aspect: 1 },
   youtube: { file: 'youtube.svg', aspect: 28.57 / 20 },
+  nike: { file: 'nike.svg', aspect: 1000 / 356.39 },
+  adidas: { file: 'adidas.svg', aspect: 725 / 500 },
 } as const
 export type LogoName = keyof typeof LOGOS
 
@@ -19,6 +21,8 @@ const ALIASES: Record<string, LogoName> = {
   gemini: 'gemini', "gemini's": 'gemini',
   claude: 'claude', "claude's": 'claude',
   youtube: 'youtube', "youtube's": 'youtube',
+  nike: 'nike', "nike's": 'nike',
+  adidas: 'adidas', "adidas'": 'adidas',
 }
 
 export function logoFor(text: string): LogoName | undefined {
