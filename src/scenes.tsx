@@ -379,7 +379,7 @@ export const Versus: React.FC = () => {
         <g transform="translate(160 100)"><Glyph icon={d.icon} /></g>
         {accent && <rect x={84} y={34} width={152} height={130} rx={30} fill="none" stroke={look.blue} strokeWidth={5} opacity={r} />}
         <Txt x={160} y={228} size={40} weight={800} textAnchor="middle" color={accent ? look.blue : look.ink}>{d.title}</Txt>
-        <Txt x={160} y={266} size={24} weight={600} color={look.muted} textAnchor="middle">{d.sub}</Txt>
+        <Txt x={160} y={266} size={d.sub.length > 22 ? 21 : 24} weight={600} color={look.muted} textAnchor="middle">{d.sub}</Txt>
       </Card>
     </Pop>
   )

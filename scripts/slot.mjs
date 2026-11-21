@@ -2,8 +2,8 @@
 // slot, e.g. 2026-11-10-1900: it names reels/<id>.json, out/<id>.mp4, the Pages URL and the history entry.
 // Plain Node with no packages, so the workflow's guard job can run it right after a sparse checkout.
 //
-//   node scripts/slot.mjs           the next slot that still needs a video and posts 40 min to 6 h from now
-//                                   (prints nothing when there is none); the scheduled runs use this
+//   node scripts/slot.mjs           today's slot if it needs a video and now is inside brand.makeWindow
+//                                   (prints nothing otherwise); the scheduled runs use this
 //   node scripts/slot.mjs --any     the next slot that still needs a video, however far away
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -19,20 +19,26 @@ export function postTime(id, b = brand()) {
   return Date.parse(`${day}T00:00:00Z`) + (Number(hhmm.slice(0, 2)) * 60 + Number(hhmm.slice(2, 4)) - b.timezone.offsetMinutes) * 60e3
 }
 
-/** the next slot without a rendered or posted video, posting at least 40 min from now and (unless any) within 6 h */
+const minutes = (hhmm) => Number(hhmm.slice(0, 2)) * 60 + Number(hhmm.slice(3, 5))
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+/** The next slot with no rendered or posted video.
+ *  Scheduled runs (any = false) only work inside brand.makeWindow, and only on that same day's slot.
+ *  Manual runs (any = true) take the next free slot, whatever the time. */
 export function nextSlot({ now = Date.now(), any = false } = {}) {
   const b = brand(), done = new Set(history().filter((e) => e.status === 'rendered' || e.status === 'posted').map((e) => e.date))
   const local = new Date(now + b.timezone.offsetMinutes * 60e3)
-  const names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  for (let d = 0; d < 8; d++) {
+  if (!any) {
+    const m = local.getUTCHours() * 60 + local.getUTCMinutes()
+    if (m < minutes(b.makeWindow.start) || m > minutes(b.makeWindow.end)) return ''
+  }
+  for (let d = 0; d < (any ? 8 : 1); d++) {
     const date = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate() + d))
-    if (b.days && !b.days.includes(names[date.getUTCDay()])) continue
+    if (!b.days.includes(WEEKDAYS[date.getUTCDay()])) continue
     const day = date.toISOString().slice(0, 10)
     for (const s of b.slots) {
-      const id = `${day}-${s.replace(':', '')}`, at = postTime(id, b)
-      if (at < now + 40 * 60e3 || done.has(id)) continue
-      if (!any && at > now + 6 * 3600e3) return ''
-      return id
+      const id = `${day}-${s.replace(':', '')}`
+      if (postTime(id, b) >= now + 40 * 60e3 && !done.has(id)) return id
     }
   }
   return ''

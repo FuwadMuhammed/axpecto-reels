@@ -20,7 +20,7 @@
     "offsetMinutes": 330
   },
   "slots": [
-    "19:00"
+    "20:30"
   ],
   "account": "AI Search Daily",
   "days": [
@@ -30,7 +30,11 @@
     "Sun"
   ],
   "extras": {
-    "storyAfterHours": 2,
-    "postAfterHours": 18
+    "storyAfterHours": 3,
+    "postAfterHours": 22
+  },
+  "makeWindow": {
+    "start": "02:00",
+    "end": "06:45"
   }
 }

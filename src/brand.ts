@@ -14,6 +14,7 @@ export interface Brand {
   timezone: { label: string, offsetMinutes: number }
   slots: string[]        // HH:MM reel times in that timezone (scripts/slot.mjs)
   days: string[]         // weekdays with a reel: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+  makeWindow: { start: string, end: string } // scheduled runs only start inside this HH:MM window (brand timezone)
   account: string        // name shown on carousels and stories
   extras: { storyAfterHours: number, postAfterHours: number } // when each reel's story and carousel go out
 }

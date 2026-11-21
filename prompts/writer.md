@@ -62,7 +62,8 @@ Icons: memory, page, robot, search, chat, link, star, warning, check, code, quot
 # The post
 
 - `caption`: 2-4 plain sentences that retell the idea, ending by pointing to {{url}}. No hype.
-- `hashtags`: 4-7, must include {{hashtag}}, plus e.g. #seo #geo #aeo #aisearch #digitalmarketing.
+- `keywords`: 5-9 search phrases that the target audience (SEO people, digital marketers, agencies, founders) really searches for and that this video actually covers, most specific first. Examples: "local SEO", "generative engine optimization", "AI citations", "robots.txt for AI crawlers". No brand names of tools, no filler. They are added to the caption automatically, so do not repeat them as a list in `caption`.
+- `hashtags`: 4-5, must include {{hashtag}}. Use the topic's most relevant tags, mixing broad and specific, e.g. #aisearch #generativeengineoptimization #answerengineoptimization #localseo #technicalseo #seo.
 - `youtubeTitle`: clear and curious, no clickbait.
 - `xText`: one or two sentences; may end with {{url}}.
 

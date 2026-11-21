@@ -7,12 +7,12 @@ name: Daily reel
 # The schedule runs only when the repo variable DAILY is "on" (gh variable set DAILY --body on),
 # so a fresh copy of the template does nothing until it's set up. Manual runs always work.
 on:
-  # Every hour, at odd minutes (GitHub delays or drops scheduled runs, most of all on the hour). Each run makes the
-  # next slot posting 40 min to 6 h from now that has no video yet, so every slot gets several tries; runs with
-  # nothing to do stop after a few seconds in the guard job.
+  # Videos are only made while India sleeps: three tries at 02:07, 03:37 and 05:07 IST (UTC the evening before).
+  # The guard does nothing on non-reel days, after a success, or if GitHub delays a run past 06:45 IST.
   schedule:
-    - cron: '23 */2 * * *'
-    - cron: '53 1-23/2 * * *'
+    - cron: '37 20 * * *'
+    - cron: '7 22 * * *'
+    - cron: '37 23 * * *'
   workflow_dispatch:
     inputs:
       id:
@@ -39,7 +39,7 @@ concurrency:
 
 jobs:
   # Decides whether this run does anything and which slot it makes: manual runs always do; scheduled ones only
-  # when DAILY is on and a slot in the next 6 hours has no video yet.
+  # when DAILY is on, it is inside the night window, and today's slot has no video yet.
   guard:
     runs-on: ubuntu-latest
     timeout-minutes: 5

@@ -31,7 +31,7 @@ export interface Reel {
   summary: string
   sources: string[]
   scenes: Scene[]
-  post: { caption: string, hashtags: string[], youtubeTitle: string, xText: string }
+  post: { caption: string, keywords?: string[], hashtags: string[], youtubeTitle: string, xText: string }
   /** feed post: a cover, 3-5 teaching slides, then an end card */
   carousel: { cover: string, slides: Array<{ title: string, body: string }>, caption: string }
   /** one 9:16 image pointing people to the new reel */

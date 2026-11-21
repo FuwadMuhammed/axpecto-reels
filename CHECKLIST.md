@@ -36,7 +36,7 @@ Do these in order. Nothing posts until the last step.
 - [ ] Paste **only the Axpecto channels** from that output into `brand/channels.json`, then commit and push.
 
 ## 5. Check the brand settings (`brand/brand.json`)
-- [ ] Weekly plan: `days` and `slots` set the reels (Mon, Wed, Fri, Sun at 19:00 India time). Each reel also makes one story (`storyAfterHours`: 2) and one carousel post (`postAfterHours`: 18, so 13:00 next day). That is 4 reels, 4 stories and 4 posts a week.
+- [ ] Weekly plan: videos are made between 02:00 and 07:00 IST on Mon, Wed, Fri and Sun. Each makes a reel (20:30 IST), a story (23:30 IST) and a carousel post (18:30 IST next day): 4 of each a week. Change `days`, `slots`, `makeWindow` and `extras` to adjust.
 - [ ] `hashtag`, `url` and `product` are right. `product` is the only thing the writer may claim about Axpecto.
 - [ ] `pronounce`: how the voice says "Axpecto". Listen to a test video and adjust.
 

@@ -14,7 +14,7 @@
     "status": "test"
   },
   {
-    "date": "2026-11-22-1900",
+    "date": "2026-11-22-2030",
     "title": "The dentist AI kept sending to the old address",
     "category": "local",
     "summary": "Local AI answers are built from what the web says about a business, so clashing or outdated name, address, hours and reviews can make AI repeat old details.",

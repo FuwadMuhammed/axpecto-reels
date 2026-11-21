@@ -1014,7 +1014,8 @@
     "caption",
     "hashtags",
     "youtubeTitle",
-    "xText"
+    "xText",
+    "keywords"
    ],
    "properties": {
     "caption": {
@@ -1024,8 +1025,8 @@
     },
     "hashtags": {
      "type": "array",
-     "minItems": 3,
-     "maxItems": 8,
+     "minItems": 4,
+     "maxItems": 5,
      "items": {
       "type": "string",
       "pattern": "^#[A-Za-z0-9_]+$"
@@ -1040,6 +1041,16 @@
      "type": "string",
      "minLength": 1,
      "maxLength": 250
+    },
+    "keywords": {
+     "type": "array",
+     "minItems": 5,
+     "maxItems": 9,
+     "items": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 40
+     }
     }
    }
   },

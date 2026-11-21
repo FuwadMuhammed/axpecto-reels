@@ -88,10 +88,13 @@ const CREATE = `mutation Create($input: CreatePostInput!) {
 const STATUS = `query Status($input: PostInput!) { post(input: $input) { id status dueAt sentAt externalLink error { message } } }`
 const DELETE = `mutation Delete($input: DeletePostInput!) { deletePost(input: $input) { __typename ... on MutationError { message } } }`
 
+// Caption, then search keywords (when the reel has them), then hashtags.
+const withTags = (caption: string, reel: Reel) =>
+  [caption.trim(), ...(reel.post.keywords?.length ? [`Keywords: ${reel.post.keywords.join(', ')}`] : []), reel.post.hashtags.join(' ')].join('\n\n')
+
 // The text and network settings for one channel.
 export function postInput(ch: Channel, reel: Reel, url: string, dueAt: string) {
-  const tags = reel.post.hashtags.join(' ')
-  const caption = `${reel.post.caption.trim()}\n\n${tags}`
+  const caption = withTags(reel.post.caption, reel)
   const base = {
     channelId: ch.id,
     schedulingType: 'automatic',
@@ -128,7 +131,7 @@ export function instagramExtras(ch: Channel, reel: Reel, base: string, id: strin
       metadata: { instagram: { type: 'story', shouldShareToFeed: false } },
     } },
     { key: 'instagram:post', urls: slides.map((_, i) => `${base}/${id}-post-${i + 1}.jpg`), input: {
-      ...common, dueAt: later(BRAND.extras.postAfterHours), text: `${reel.carousel.caption.trim()}\n\n${reel.post.hashtags.join(' ')}`,
+      ...common, dueAt: later(BRAND.extras.postAfterHours), text: withTags(reel.carousel.caption, reel),
       assets: slides.map((altText, i) => ({ image: { url: `${base}/${id}-post-${i + 1}.jpg`, metadata: { altText: altText.slice(0, 900) } } })),
       metadata: { instagram: { type: 'post', shouldShareToFeed: true } },
     } },
