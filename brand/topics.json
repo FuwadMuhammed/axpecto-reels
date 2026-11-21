@@ -1,0 +1,10 @@
+[
+  { "id": "seo-history", "brief": "A true moment from the history of search and SEO (keyword stuffing, PageRank, link farms, Panda, Penguin, mobile-first, featured snippets) told as a story, then what it teaches about being found by AI today." },
+  { "id": "ai-search", "brief": "How AI assistants and AI Overviews choose what to show: one answer instead of ten links, how they pick sources, why some brands get named and others don't." },
+  { "id": "geo-tactics", "brief": "One practical GEO or AEO tactic (structured data, llms.txt, quotable answers, FAQs, entity clarity, being cited by trusted sites) explained with a before-and-after." },
+  { "id": "technical", "brief": "A technical thing that quietly blocks AI from reading a site (robots.txt rules for AI crawlers, JavaScript-only content, missing canonical tags, no sitemap) and how to check it." },
+  { "id": "myths", "brief": "A common SEO or AI-visibility myth and what is actually true, with a clear example." },
+  { "id": "mentioned-vs-cited", "brief": "The difference between being mentioned by an AI (from memory) and being cited (your page used as the source), and why the gap matters." },
+  { "id": "local", "brief": "How local businesses get found in AI answers ('best dentist near me'): consistent business details, reviews, opening hours, and what AI gets wrong about them." },
+  { "id": "agents", "brief": "AI agents that visit websites to do tasks for people (find a price, book, fill a form): what makes a site easy or impossible for them to use." }
+]

@@ -1,0 +1,31 @@
+{
+  "name": "axpecto-reels",
+  "private": true,
+  "type": "module",
+  "description": "Daily story-led SEO / AEO / GEO explainer reels: written by Claude, voiced and rendered in CI, posted through Buffer.",
+  "scripts": {
+    "studio": "remotion studio",
+    "voice": "python3 tools/voice.py",
+    "make": "tsx scripts/make.ts",
+    "check": "tsx scripts/write.ts --check",
+    "typecheck": "tsc",
+    "write": "tsx scripts/write.ts",
+    "daily": "tsx scripts/daily.ts",
+    "post": "tsx scripts/post.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "@remotion/google-fonts": "4.0.540",
+    "ajv": "8.17.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/react": "19.1.12",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  },
+  "engines": { "node": ">=20.11" }
+}

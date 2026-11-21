@@ -1,0 +1,257 @@
+{
+  "title": "The best SEO trick was invisible",
+  "category": "seo-history",
+  "summary": "How hidden white-on-white keywords once gamed Google, how Panda and Penguin ended it, and why AI answers changed the game again: being mentioned is not being cited.",
+  "sources": [
+    "Google Search Central: spam policies (hidden text and links)",
+    "Google Search Central Blog: Finding more high-quality sites in search (Panda, 2011)",
+    "Google Search Central Blog: Another step to reward high-quality sites (Penguin, 2012)"
+  ],
+  "scenes": [
+    {
+      "type": "hook",
+      "voice": "In the early two thousands, the best SEO trick was invisible.",
+      "kicker": "Early 2000s",
+      "stamp": "2000s",
+      "headline": "The best SEO trick was",
+      "reveal": "invisible.",
+      "emph": [
+        "invisible."
+      ]
+    },
+    {
+      "type": "browser",
+      "voice": "Sites hid keywords in white text, on a white page. Visitors saw nothing. But the crawler read every word, and ranked them for it.",
+      "kicker": "Keyword stuffing",
+      "url": "shoes-cheap.biz",
+      "hidden": "cheap shoes best shoes buy shoes cheap shoes shoes sale best cheap shoes shoes shoes",
+      "badge": "#1",
+      "visitor": true,
+      "crawler": true,
+      "reaction": "?",
+      "emph": [
+        "nothing.",
+        "ranked"
+      ],
+      "on": {
+        "page": "sites",
+        "hidden": "white#2",
+        "visitor": "visitors",
+        "crawler": "crawler",
+        "badge": "ranked"
+      }
+    },
+    {
+      "type": "ranking",
+      "voice": "Then Google fought back. Updates like Panda, in twenty eleven, and Penguin, in twenty twelve, buried sites that gamed the system.",
+      "kicker": "The crackdown",
+      "query": "cheap running shoes",
+      "results": [
+        "shoes-cheap.biz",
+        "runnersworld.example",
+        "stride-and-co.example",
+        "pacelab.example",
+        "shoereviews.example",
+        "localrun.example"
+      ],
+      "highlight": 0,
+      "to": 5,
+      "tags": [
+        {
+          "title": "PANDA",
+          "sub": "Google · 2011"
+        },
+        {
+          "title": "PENGUIN",
+          "sub": "Google · 2012"
+        }
+      ],
+      "emph": [
+        "Panda,",
+        "Penguin,",
+        "buried"
+      ],
+      "on": {
+        "list": "then",
+        "move": "buried",
+        "tags": [
+          "panda",
+          "penguin"
+        ]
+      }
+    },
+    {
+      "type": "chat",
+      "voice": "Today, more and more people skip the ten blue links. They ask ChatGPT, Perplexity or Gemini, and get one answer.",
+      "kicker": "Today",
+      "question": "Best running shoe store near me?",
+      "assistants": [
+        "ChatGPT",
+        "Perplexity",
+        "Gemini"
+      ],
+      "answerTitle": "Stride & Co.",
+      "answerSub": "Top-rated running store near you",
+      "links": true,
+      "emph": [
+        "one",
+        "answer."
+      ],
+      "on": {
+        "links": "skip",
+        "ask": "ask",
+        "answer": "one"
+      }
+    },
+    {
+      "type": "cards",
+      "voice": "It's a new game. SEO gets you ranked. AEO and GEO get you into the answer.",
+      "kicker": "A new game",
+      "cards": [
+        {
+          "big": "SEO",
+          "label": "Search Engine Optimization",
+          "line": "Rank in the results"
+        },
+        {
+          "big": "AEO",
+          "label": "Answer Engine Optimization",
+          "line": "Be the direct answer"
+        },
+        {
+          "big": "GEO",
+          "label": "Generative Engine Optimization",
+          "line": "Get named by AI"
+        }
+      ],
+      "highlight": [
+        1,
+        2
+      ],
+      "emph": [
+        "SEO",
+        "AEO",
+        "GEO"
+      ],
+      "on": {
+        "cards": [
+          "seo",
+          "aeo",
+          "geo"
+        ],
+        "highlight": "answer"
+      }
+    },
+    {
+      "type": "versus",
+      "voice": "Here's the catch. Mentioned is not cited. A mention comes from the model's memory. A citation means it used your page as the source.",
+      "kicker": "The catch",
+      "headline": {
+        "left": "Mentioned",
+        "sign": "≠",
+        "right": "cited"
+      },
+      "answer": "Try Stride & Co. for fittings [1]",
+      "left": {
+        "title": "Mentioned",
+        "sub": "from the model's memory",
+        "icon": "memory"
+      },
+      "right": {
+        "title": "Cited",
+        "sub": "your page is the source",
+        "icon": "page"
+      },
+      "emph": [
+        "not",
+        "cited.",
+        "source."
+      ],
+      "on": {
+        "headline": "mentioned",
+        "answer": "catch",
+        "left": "mention",
+        "right": "citation"
+      }
+    },
+    {
+      "type": "checklist",
+      "voice": "Three quick checks. Let AI crawlers in. Tell machines who you are. And write answers worth quoting.",
+      "kicker": "3 quick checks",
+      "items": [
+        {
+          "title": "Let AI crawlers in",
+          "detail": "robots.txt: allow GPTBot & co.",
+          "icon": "robot"
+        },
+        {
+          "title": "Tell machines who you are",
+          "detail": "structured data · schema.org",
+          "icon": "code"
+        },
+        {
+          "title": "Write answers worth quoting",
+          "detail": "short, clear, specific facts",
+          "icon": "quote"
+        }
+      ],
+      "emph": [
+        "crawlers",
+        "machines",
+        "quoting."
+      ],
+      "on": {
+        "items": [
+          "crawlers",
+          "machines",
+          "write"
+        ]
+      }
+    },
+    {
+      "type": "cta",
+      "voice": "Want to see what AI really says about you? Try Axpecto. It asks AI what your customers ask, and shows who gets recommended.",
+      "kicker": "Axpecto",
+      "question": "What does AI say about you?",
+      "rows": [
+        {
+          "assistant": "ChatGPT",
+          "ok": true
+        },
+        {
+          "assistant": "Perplexity",
+          "ok": false
+        },
+        {
+          "assistant": "Gemini",
+          "ok": true
+        },
+        {
+          "assistant": "AI Overviews",
+          "ok": false
+        }
+      ],
+      "emph": [
+        "Axpecto.",
+        "recommended."
+      ],
+      "on": {
+        "brand": "axpecto",
+        "rows": "customers"
+      }
+    }
+  ],
+  "post": {
+    "caption": "The best SEO trick of the early 2000s was invisible: white text on a white page. Then Google fought back. Today the game has moved again, from ranking in links to being named in AI answers. See what AI says about your business at axpecto.com",
+    "hashtags": [
+      "#axpecto",
+      "#seo",
+      "#geo",
+      "#aeo",
+      "#aisearch",
+      "#digitalmarketing"
+    ],
+    "youtubeTitle": "The best SEO trick was invisible (and what replaced it)",
+    "xText": "The best SEO trick of the 2000s was invisible. Today the game is getting named in AI answers. Mentioned is not cited. axpecto.com"
+  }
+}
