@@ -6,8 +6,31 @@
   "pitch": "short, story-led explainers about how people find businesses online: the history and tricks of SEO, and how AI answers (ChatGPT, Perplexity, Gemini, Google AI Overviews) are changing it. AEO, GEO and AI visibility, explained simply. Each video teaches one real idea and ends with a soft invitation to try Axpecto.",
   "audience": "marketers, SEO people, founders, agency owners and small-business owners who want to be found online; busy, scrolling fast, often with the sound off",
   "product": "Axpecto checks how a business shows up in AI. It asks AI assistants (ChatGPT, Perplexity, Gemini, Google AI Overviews) the questions real customers ask, reads every answer, and shows whether the business is recommended or a competitor is, and which sources are cited. It also checks whether AI crawlers can reach the site and whether AI agents can use it, then turns that into a short list of fixes. Key idea: being mentioned (from the model's memory) is not the same as being cited (the model used your page as the source).",
-  "voice": { "name": "am_michael", "speed": 1.12 },
-  "pronounce": { "Axpecto": "Ax-pecto", "AEO": "A-E-O", "GEO": "G-E-O" },
-  "timezone": { "label": "India", "offsetMinutes": 330 },
-  "slots": ["19:00"]
+  "voice": {
+    "name": "am_michael",
+    "speed": 1.12
+  },
+  "pronounce": {
+    "Axpecto": "Ax-pecto",
+    "AEO": "A-E-O",
+    "GEO": "G-E-O"
+  },
+  "timezone": {
+    "label": "India",
+    "offsetMinutes": 330
+  },
+  "slots": [
+    "19:00"
+  ],
+  "account": "AI Search Daily",
+  "days": [
+    "Mon",
+    "Wed",
+    "Fri",
+    "Sun"
+  ],
+  "extras": {
+    "storyAfterHours": 2,
+    "postAfterHours": 18
+  }
 }

@@ -2,7 +2,7 @@
 //   npm run make -- reels/2026-11-22-1900.json   -> out/2026-11-22-1900.mp4 + -sheet.jpg
 import { pathToFileURL } from 'node:url'
 import { execFileSync, spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
@@ -32,6 +32,15 @@ export async function make(file: string): Promise<{ ok: true, mp4: string, durat
     run('bash', ['tools/master.sh', raw])
     const mp4 = join(ROOT, 'out', `${id}.mp4`)
     renameSync(join(ROOT, 'out', `${id}.raw.final.mp4`), mp4)
+    console.log('  carousel and story')
+    const seq = join(ROOT, 'out', `${id}-slides`)
+    rmSync(seq, { recursive: true, force: true })
+    run('npx', ['remotion', 'render', 'src/index.ts', 'Carousel', seq, `--props=${props}`, '--sequence', '--image-format=jpeg'])
+    const shots = readdirSync(seq).filter(f => /\.jpe?g$/.test(f)).sort((a, b) => Number(a.match(/(\d+)\./)![1]) - Number(b.match(/(\d+)\./)![1]))
+    if (shots.length !== reel.carousel.slides.length + 2) throw new Error(`carousel rendered ${shots.length} slides`)
+    shots.forEach((f, i) => renameSync(join(seq, f), join(ROOT, 'out', `${id}-post-${i + 1}.jpg`)))
+    rmSync(seq, { recursive: true, force: true })
+    run('npx', ['remotion', 'still', 'src/index.ts', 'Story', join(ROOT, 'out', `${id}-story.jpg`), `--props=${props}`, '--image-format=jpeg'])
     const duration = seconds(mp4)
     run('ffmpeg', ['-v', 'error', '-y', '-i', mp4, '-vf', `fps=${(18 / duration).toFixed(4)},scale=270:-1,tile=6x3`, '-frames:v', '1', join(ROOT, 'out', `${id}-sheet.jpg`)])
     const audio = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'a', '-show_entries', 'stream=codec_name', '-of', 'csv=p=0', mp4]).toString().trim()

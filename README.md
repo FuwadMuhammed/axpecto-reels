@@ -3,6 +3,8 @@
 Short, story-led explainers about SEO, AEO, GEO and AI visibility. Each teaches one real idea and ends with a soft
 "Try Axpecto" and axpecto.com. Written by Claude, voiced and rendered in GitHub Actions, posted through Buffer.
 
+Every week: **4 reels, 4 carousel posts and 4 stories**, all from 4 Claude calls.
+
 **Setting it up? Follow [CHECKLIST.md](CHECKLIST.md).**
 
 ```mermaid
@@ -25,6 +27,7 @@ flowchart LR
 | `prompts/writer.md` | Claude's brief: story shape, fact rules, "not an ad" rule |
 | `episode.schema.json` | Exact shape of a reel; `scripts/write.ts` adds further checks |
 | `src/scenes.tsx` | Scene library: hook, browser, ranking, chat, cards, versus, checklist, timeline, cta |
+| `src/Stills.tsx` | Carousel slides and story image made from each reel |
 | `src/logos.ts`, `public/logos/` | Real logos, shown whenever a brand is named |
 | `reels/`, `data/` | Every reel written, plus history and post records |
 

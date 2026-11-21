@@ -80,7 +80,10 @@ export function checkReel(x: unknown): string[] {
   })
   if (!r.post.hashtags.some(h => h.toLowerCase() === BRAND.hashtag.toLowerCase())) errors.push(`hashtags must include ${BRAND.hashtag}`)
   if (!r.post.caption.toLowerCase().includes(BRAND.url)) errors.push(`the caption must mention ${BRAND.url}`)
-  const all = [...r.scenes.map(s => s.voice), r.post.caption, r.post.youtubeTitle, r.post.xText].join('\n')
+  if (!r.carousel.caption.toLowerCase().includes(BRAND.url)) errors.push(`the carousel caption must mention ${BRAND.url}`)
+  const extras = [r.carousel.cover, ...r.carousel.slides.flatMap(x => [x.title, x.body]), r.story.kicker, r.story.line]
+  if (extras.some(x => new RegExp(`\\b${BRAND.name}\\b`, 'i').test(x))) errors.push(`${BRAND.name} may not appear on carousel slides or the story; the end card adds it`)
+  const all = [...r.scenes.map(s => s.voice), r.post.caption, r.post.youtubeTitle, r.post.xText, r.carousel.caption, ...extras].join('\n')
   for (const re of SLOP) { const m = all.match(re); if (m) errors.push(`"${m[0]}" sounds like clickbait or AI writing; say it plainly`) }
   if (/\bfree\b/i.test(all)) errors.push('do not mention anything being free')
   return errors

@@ -32,6 +32,10 @@ export interface Reel {
   sources: string[]
   scenes: Scene[]
   post: { caption: string, hashtags: string[], youtubeTitle: string, xText: string }
+  /** feed post: a cover, 3-5 teaching slides, then an end card */
+  carousel: { cover: string, slides: Array<{ title: string, body: string }>, caption: string }
+  /** one 9:16 image pointing people to the new reel */
+  story: { kicker: string, line: string }
 }
 
 /** public/runs/<id>/timing.json, written by tools/voice.py */

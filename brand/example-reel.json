@@ -253,5 +253,31 @@
     ],
     "youtubeTitle": "The best SEO trick was invisible (and what replaced it)",
     "xText": "The best SEO trick of the 2000s was invisible. Today the game is getting named in AI answers. Mentioned is not cited. axpecto.com"
+  },
+  "carousel": {
+    "cover": "The best SEO trick was invisible",
+    "slides": [
+      {
+        "title": "White text on a white page",
+        "body": "In the early 2000s, some sites hid keywords where visitors could not see them, but crawlers could."
+      },
+      {
+        "title": "Google fought back",
+        "body": "Updates like Panda in 2011 and Penguin in 2012 pushed down sites that gamed the system."
+      },
+      {
+        "title": "Now people ask AI",
+        "body": "ChatGPT, Perplexity and Gemini give one answer instead of ten blue links."
+      },
+      {
+        "title": "Mentioned is not cited",
+        "body": "A mention comes from the model's memory. A citation means it used your page as the source."
+      }
+    ],
+    "caption": "Search has changed twice: from hidden tricks to quality, and now from links to AI answers. Save this, then check how AI describes your business at axpecto.com"
+  },
+  "story": {
+    "kicker": "New reel",
+    "line": "The best SEO trick was invisible"
   }
 }

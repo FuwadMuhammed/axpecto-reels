@@ -124,6 +124,8 @@ jobs:
           path: |
             out/${{ steps.daily.outputs.date }}.mp4
             out/${{ steps.daily.outputs.date }}-sheet.jpg
+            out/${{ steps.daily.outputs.date }}-post-*.jpg
+            out/${{ steps.daily.outputs.date }}-story.jpg
             reels/${{ steps.daily.outputs.date }}.json
           retention-days: 30
 

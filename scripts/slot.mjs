@@ -23,8 +23,11 @@ export function postTime(id, b = brand()) {
 export function nextSlot({ now = Date.now(), any = false } = {}) {
   const b = brand(), done = new Set(history().filter((e) => e.status === 'rendered' || e.status === 'posted').map((e) => e.date))
   const local = new Date(now + b.timezone.offsetMinutes * 60e3)
-  for (let d = 0; d < 3; d++) {
-    const day = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate() + d)).toISOString().slice(0, 10)
+  const names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  for (let d = 0; d < 8; d++) {
+    const date = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate() + d))
+    if (b.days && !b.days.includes(names[date.getUTCDay()])) continue
+    const day = date.toISOString().slice(0, 10)
     for (const s of b.slots) {
       const id = `${day}-${s.replace(':', '')}`, at = postTime(id, b)
       if (at < now + 40 * 60e3 || done.has(id)) continue

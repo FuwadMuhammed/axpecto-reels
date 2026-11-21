@@ -10,13 +10,13 @@ export type Expr = 'smile' | 'happy' | 'surprised' | 'puzzled' | 'think' | 'wink
 
 /** (x, y) = bottom centre of the bust; at s = 1 it is ~350 wide and ~400 tall. */
 export const Avatar: React.FC<{
-  x: number, y: number, s?: number, expr?: Expr, gaze?: [number, number], tilt?: number, variant?: 'a' | 'b', seed?: number, hood?: 'blue' | 'lav',
-}> = ({ x, y, s = 1, expr = 'smile', gaze = [0, 0], tilt = 0, variant = 'a', seed = 0, hood = 'blue' }) => {
+  x: number, y: number, s?: number, expr?: Expr, gaze?: [number, number], tilt?: number, variant?: 'a' | 'b', seed?: number, hood?: 'blue' | 'lav', still?: boolean,
+}> = ({ x, y, s = 1, expr = 'smile', gaze = [0, 0], tilt = 0, variant = 'a', seed = 0, hood = 'blue', still = false }) => {
   const f = useCurrentFrame() + seed * 41
   const breathe = Math.sin(f / 16) * 3
   const sway = Math.sin(f / 23) * 2.2 + tilt
   const blinkT = f % 110
-  const blink = blinkT < 3 ? 0.1 : blinkT < 5 ? 0.5 : 1
+  const blink = still ? 1 : blinkT < 3 ? 0.1 : blinkT < 5 ? 0.5 : 1
   const skin = `url(#skin${variant.toUpperCase()})`, hair = `url(#hair${variant.toUpperCase()})`
   const [gx, gy] = expr === 'think' ? [0.7, -0.8] : gaze
   const brow = { smile: 0, happy: -6, surprised: -16, puzzled: 0, think: -4, wink: -4 }[expr]
@@ -103,14 +103,14 @@ export const Avatar: React.FC<{
 }
 
 /** The crawler. `lens` = where its magnifying glass is, relative to the bot (null hides it). */
-export const Crawler: React.FC<{ x: number, y: number, s?: number, lens?: { x: number, y: number } | null, walking?: boolean, flip?: boolean, lensR?: number }> = ({
-  x, y, s = 1, lens = { x: -110, y: -150 }, walking = false, flip = false, lensR = 46,
+export const Crawler: React.FC<{ x: number, y: number, s?: number, lens?: { x: number, y: number } | null, walking?: boolean, flip?: boolean, lensR?: number, still?: boolean }> = ({
+  x, y, s = 1, lens = { x: -110, y: -150 }, walking = false, flip = false, lensR = 46, still = false,
 }) => {
   const f = useCurrentFrame()
   const step = walking ? Math.sin(f / 2.6) : Math.sin(f / 18) * 0.25
   const hover = Math.sin(f / 11) * 4
   const scan = (Math.sin(f / 16) + 1) / 2
-  const blink = f % 120 < 5 ? 0.15 : 1
+  const blink = still || f % 120 >= 5 ? 1 : 0.15
   return (
     <g transform={`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`}>
       <ellipse cx={0} cy={4} rx={90} ry={12} fill="#1E2A66" opacity={0.1} />

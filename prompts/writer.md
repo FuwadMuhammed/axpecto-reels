@@ -66,4 +66,14 @@ Icons: memory, page, robot, search, chat, link, star, warning, check, code, quot
 - `youtubeTitle`: clear and curious, no clickbait.
 - `xText`: one or two sentences; may end with {{url}}.
 
-`title`: a short name for the video. `summary`: one sentence on the story and its idea (used to avoid repeats). 
+`title`: a short name for the video. `summary`: one sentence on the story and its idea (used to avoid repeats).
+
+# The carousel and the story
+
+The same idea also goes out as a feed post and a story. They follow the truth rules above. Do not name {{name}} on slides or in the story: the end card adds it.
+
+- `carousel.cover`: a curiosity-driven headline, up to 48 characters.
+- `carousel.slides`: 3-5 slides that teach the idea on their own, without the video. Each has a `title` (up to 36 characters) and a `body` (one or two plain sentences, up to 125 characters). Digits are fine.
+- `carousel.caption`: 2-4 plain sentences, different from the reel caption, ending by pointing to {{url}}.
+- `story.kicker`: 1-3 words, e.g. "New reel".
+- `story.line`: one short teaser for the reel, up to 64 characters. Make people want to watch it.

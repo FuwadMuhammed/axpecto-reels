@@ -4,6 +4,7 @@
 //   npm run post -- <date> --dry                   print what would be sent
 //   npm run post -- <date> --only instagram        one channel
 //   npm run post -- <date> --at 2026-12-20T13:30:00Z --url https://...mp4
+//   npm run post -- <date> --draft                 save all formats as Buffer drafts (never publishes)
 //   npm run post -- <date> --now                   post in about 5 minutes instead of at its slot time
 //   npm run post -- --channels                     list the Buffer channels for every BUFFER_API_KEY_*
 //   npm run post -- <date> --status                show each saved post's status
@@ -115,13 +116,32 @@ export function postInput(ch: Channel, reel: Reel, url: string, dueAt: string) {
   }
 }
 
+// A reel's extra Instagram formats, built from the same idea: a story, then a carousel post the next day.
+export function instagramExtras(ch: Channel, reel: Reel, base: string, id: string, dueAt: string) {
+  const later = (hours: number) => new Date(Date.parse(dueAt) + hours * 3600e3).toISOString()
+  const common = { channelId: ch.id, schedulingType: 'automatic', mode: 'customScheduled', needsApproval: false, source: 'axpecto-reels' }
+  const slides = [reel.carousel.cover, ...reel.carousel.slides.map(x => `${x.title}. ${x.body}`), `What does AI say about you? ${BRAND.name}, ${BRAND.url}`]
+  return [
+    { key: 'instagram:story', urls: [`${base}/${id}-story.jpg`], input: {
+      ...common, dueAt: later(BRAND.extras.storyAfterHours),
+      assets: [{ image: { url: `${base}/${id}-story.jpg`, metadata: { altText: reel.story.line } } }],
+      metadata: { instagram: { type: 'story', shouldShareToFeed: false } },
+    } },
+    { key: 'instagram:post', urls: slides.map((_, i) => `${base}/${id}-post-${i + 1}.jpg`), input: {
+      ...common, dueAt: later(BRAND.extras.postAfterHours), text: `${reel.carousel.caption.trim()}\n\n${reel.post.hashtags.join(' ')}`,
+      assets: slides.map((altText, i) => ({ image: { url: `${base}/${id}-post-${i + 1}.jpg`, metadata: { altText: altText.slice(0, 900) } } })),
+      metadata: { instagram: { type: 'post', shouldShareToFeed: true } },
+    } },
+  ]
+}
+
 // The video's slot time (its id is <date>-<HHMM>, see scripts/slot.mjs) as UTC; never less than 10 minutes from now.
 export function dueAtFor(date: string) {
   const at = postTime(date)
   return new Date(Math.max(at, Date.now() + 10 * 60e3)).toISOString()
 }
 
-export async function post(date: string, opts: { only?: string, at?: string, url?: string, dry?: boolean } = {}) {
+export async function post(date: string, opts: { only?: string, at?: string, url?: string, dry?: boolean, draft?: boolean } = {}) {
   loadEnv()
   const cfg: Config = JSON.parse(readFileSync(join(ROOT, 'brand/channels.json'), 'utf8'))
   const reel: Reel = JSON.parse(readFileSync(join(ROOT, 'reels', `${date}.json`), 'utf8'))
@@ -137,29 +157,45 @@ export async function post(date: string, opts: { only?: string, at?: string, url
   }
 
   const failures: string[] = []
+  const base = url.slice(0, url.lastIndexOf('/'))
   for (const ch of cfg.channels.filter(c => !opts.only || c.service === opts.only)) {
-    if (saved[ch.service] && saved[ch.service].status !== 'error') {
-      console.log(`  ${ch.service}: already scheduled (${saved[ch.service].id})`)
-      continue
+    const jobs: Array<{ key: string, urls: string[], input: any }> = [{ key: ch.service, urls: [], input: postInput(ch, reel, url, dueAt) }]
+    if (ch.service === 'instagram' && reel.carousel && reel.story) jobs.push(...instagramExtras(ch, reel, base, date, dueAt))
+    for (const job of jobs) {
+      if (!opts.draft && saved[job.key] && saved[job.key].status !== 'error') {
+        console.log(`  ${job.key}: already scheduled (${saved[job.key].id})`)
+        continue
+      }
+      const input = opts.draft ? { ...job.input, saveToDraft: true } : job.input
+      if (opts.dry) {
+        console.log(`  ${job.key} (${ch.key}):\n${JSON.stringify(input, null, 2).replace(/^/gm, '    ')}`)
+        continue
+      }
+      try {
+        for (const u of job.urls) {
+          const head = await fetch(u, { method: 'HEAD' })
+          if (!head.ok || !(head.headers.get('content-type') ?? '').startsWith('image/jpeg'))
+            throw new Error(`${u} is not serving the image (${head.status})`)
+        }
+        const r = (await gql(ch.key, CREATE, { input })).createPost
+        if (r.__typename !== 'PostActionSuccess')
+          throw new Error(`${r.__typename}: ${r.message ?? ''}`)
+        if (opts.draft) {
+          console.log(`  ${job.key}: saved as a Buffer draft (${r.post.id}), will not publish`)
+          continue
+        }
+        saved[job.key] = { id: r.post.id, dueAt: r.post.dueAt, status: r.post.status }
+        console.log(`  ${job.key}: ${r.post.status} for ${r.post.dueAt} (${r.post.id})`)
+      }
+      catch (err) {
+        failures.push(`${job.key}: ${(err as Error).message}`)
+        console.log(`  ${job.key}: FAILED ${(err as Error).message}`)
+      }
+      if (!opts.draft) {
+        mkdirSync(join(ROOT, 'data/posts'), { recursive: true })
+        writeFileSync(savedFile, `${JSON.stringify(saved, null, 2)}\n`)
+      }
     }
-    const input = postInput(ch, reel, url, dueAt)
-    if (opts.dry) {
-      console.log(`  ${ch.service} (${ch.key}):\n${JSON.stringify(input, null, 2).replace(/^/gm, '    ')}`)
-      continue
-    }
-    try {
-      const r = (await gql(ch.key, CREATE, { input })).createPost
-      if (r.__typename !== 'PostActionSuccess')
-        throw new Error(`${r.__typename}: ${r.message ?? ''}`)
-      saved[ch.service] = { id: r.post.id, dueAt: r.post.dueAt, status: r.post.status }
-      console.log(`  ${ch.service}: ${r.post.status} for ${r.post.dueAt} (${r.post.id})`)
-    }
-    catch (err) {
-      failures.push(`${ch.service}: ${(err as Error).message}`)
-      console.log(`  ${ch.service}: FAILED ${(err as Error).message}`)
-    }
-    mkdirSync(join(ROOT, 'data/posts'), { recursive: true })
-    writeFileSync(savedFile, `${JSON.stringify(saved, null, 2)}\n`)
   }
   return { failures, saved }
 }
@@ -171,7 +207,7 @@ export async function status(date: string) {
   const saved: Record<string, Saved> = existsSync(savedFile) ? JSON.parse(readFileSync(savedFile, 'utf8')) : {}
   const out: Record<string, { status: string, link?: string, error?: string }> = {}
   for (const [service, s] of Object.entries(saved)) {
-    const ch = cfg.channels.find(c => c.service === service)!
+    const ch = cfg.channels.find(c => c.service === service.split(':')[0])!
     const p = (await gql(ch.key, STATUS, { input: { id: s.id } })).post
     out[service] = { status: p?.status ?? 'missing', link: p?.externalLink ?? undefined, error: p?.error?.message ?? undefined }
   }
@@ -209,7 +245,7 @@ async function remove(date: string) {
   const savedFile = join(ROOT, 'data/posts', `${date}.json`)
   const saved: Record<string, Saved> = existsSync(savedFile) ? JSON.parse(readFileSync(savedFile, 'utf8')) : {}
   for (const [service, s] of Object.entries(saved)) {
-    const ch = cfg.channels.find(c => c.service === service)!
+    const ch = cfg.channels.find(c => c.service === service.split(':')[0])!
     const r = (await gql(ch.key, DELETE, { input: { id: s.id } })).deletePost
     console.log(`  ${service}: ${r.__typename}${r.message ? ` ${r.message}` : ''}`)
     if (r.__typename === 'DeletePostSuccess')
@@ -249,13 +285,13 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   else {
     // --now: a few minutes from now (Buffer needs a time in the future).
     const at = args.includes('--now') ? new Date(Date.now() + 5 * 60e3).toISOString() : opt('--at')
-    const r = await post(date, { only: opt('--only'), at, url: opt('--url'), dry: args.includes('--dry') })
+    const r = await post(date, { only: opt('--only'), at, url: opt('--url'), dry: args.includes('--dry'), draft: args.includes('--draft') })
     if (r.failures.length) {
       console.error(`✗ ${r.failures.length} channel(s) failed:\n  ${r.failures.join('\n  ')}`)
       process.exit(1)
     }
     // Mark the day as posted in the history.
-    if (!args.includes('--dry') && !opt('--only')) {
+    if (!args.includes('--dry') && !args.includes('--draft') && !opt('--only')) {
       const file = join(ROOT, 'data/history.json')
       const history = JSON.parse(readFileSync(file, 'utf8'))
       for (const h of history) {

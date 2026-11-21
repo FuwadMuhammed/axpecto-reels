@@ -18,6 +18,10 @@ fi
 
 cp "$mp4" "$dir/$date.mp4"
 cp "$reel" "$dir/$date.json"
+# the carousel slides and story image rendered next to the video
+for img in "$(dirname "$mp4")/$date"-post-*.jpg "$(dirname "$mp4")/$date"-story.jpg; do
+  [ -f "$img" ] && cp "$img" "$dir/"
+done
 touch "$dir/.nojekyll"
 day="${date:0:10}"
 cutoff="$(date -u -d "$day -$keep days" +%F 2>/dev/null || date -u -j -v-"$keep"d -f %F "$day" +%F)"

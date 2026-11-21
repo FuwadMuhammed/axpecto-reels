@@ -9,7 +9,9 @@
   "summary",
   "sources",
   "scenes",
-  "post"
+  "post",
+  "carousel",
+  "story"
  ],
  "properties": {
   "title": {
@@ -1038,6 +1040,72 @@
      "type": "string",
      "minLength": 1,
      "maxLength": 250
+    }
+   }
+  },
+  "carousel": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "cover",
+    "slides",
+    "caption"
+   ],
+   "properties": {
+    "cover": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 48
+    },
+    "slides": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 5,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "title",
+       "body"
+      ],
+      "properties": {
+       "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 36
+       },
+       "body": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 125
+       }
+      }
+     }
+    },
+    "caption": {
+     "type": "string",
+     "minLength": 40,
+     "maxLength": 1500
+    }
+   }
+  },
+  "story": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kicker",
+    "line"
+   ],
+   "properties": {
+    "kicker": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 18
+    },
+    "line": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
     }
    }
   }

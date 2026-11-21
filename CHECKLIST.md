@@ -36,7 +36,7 @@ Do these in order. Nothing posts until the last step.
 - [ ] Paste **only the Axpecto channels** from that output into `brand/channels.json`, then commit and push.
 
 ## 5. Check the brand settings (`brand/brand.json`)
-- [ ] `slots`: post times in India time. It starts with one a day, at 19:00. Add more, e.g. `["09:00", "19:00"]`.
+- [ ] Weekly plan: `days` and `slots` set the reels (Mon, Wed, Fri, Sun at 19:00 India time). Each reel also makes one story (`storyAfterHours`: 2) and one carousel post (`postAfterHours`: 18, so 13:00 next day). That is 4 reels, 4 stories and 4 posts a week.
 - [ ] `hashtag`, `url` and `product` are right. `product` is the only thing the writer may claim about Axpecto.
 - [ ] `pronounce`: how the voice says "Axpecto". Listen to a test video and adjust.
 
@@ -46,6 +46,13 @@ Do these in order. Nothing posts until the last step.
   gh workflow run daily.yml -f test=true
   ```
 - [ ] Open the run under **Actions** and download the artifact (video + contact sheet). Watch it with sound.
+
+## 6b. Check Buffer accepts all three formats (never publishes)
+- [ ] Save a test reel, story and carousel as Buffer drafts, replacing `<id>` with the test video's id:
+  ```bash
+  git pull && npm run post -- <id> --draft
+  ```
+- [ ] Look at the three drafts in Buffer, then delete them.
 
 ## 7. Go live
 - [ ] Make a video before every slot:
