@@ -130,7 +130,7 @@ export const Hook: React.FC = () => {
 export const BrowserScene: React.FC = () => {
   const { scene, on } = useScene(); const s = scene as Of<'browser'>
   const frame = useCurrentFrame()
-  const pageAt = on(s.on?.page, 0)
+  const pageAt = Math.min(on(s.on?.page, 0), 4)
   const visitorAt = on(s.on?.visitor, 0.3)
   const crawlerAt = on(s.on?.crawler, 0.55, -0.3)
   const read = crawlerAt + S(0.6)
@@ -225,7 +225,7 @@ export const Ranking: React.FC = () => {
   return (
     <Stage>
       <Kicker text={s.kicker} />
-      <Pop at={on(s.on?.list, 0)} cx={540} cy={700}>
+      <Pop at={Math.min(on(s.on?.list, 0), 4)} cx={540} cy={700}>
         <Browser x={130} y={370} w={820} h={cardH} url={s.query}>
           {s.results.map((d, i) => ({ d, i })).sort((x, y) => Number(x.i === h) - Number(y.i === h)).map(({ d, i }) => {
             const pos = i + (final(i) - i) * p
@@ -264,7 +264,8 @@ export const Chat: React.FC = () => {
   const { scene, on } = useScene(); const s = scene as Of<'chat'>
   const frame = useCurrentFrame()
   const linksAt = on(s.on?.links, 0)
-  const ask = on(s.on?.ask, s.links ? 0.45 : 0.04, -0.25)
+  const askWord = on(s.on?.ask, s.links ? 0.45 : 0.04, -0.25)
+  const ask = s.links ? askWord : Math.min(askWord, 4)
   const ans = on(s.on?.answer, 0.72, -0.35)
   const typed = Math.floor(interpolate(frame, [ask, ask + 16], [0, s.question.length], clamp))
   const qLines = wrap(s.question.slice(0, typed), 19)
@@ -340,7 +341,8 @@ export const Cards: React.FC = () => {
       {s.cards.map((c, i) => {
         const y = y0 + i * gap
         const on1 = (s.highlight ?? []).includes(i) ? hl : 0
-        const at = on(s.on?.cards?.[i], (i / n) * 0.75)
+        const cue = on(s.on?.cards?.[i], (i / n) * 0.75)
+        const at = i === 0 ? Math.min(cue, 4) : cue
         const big = c.big.length > 3 ? 70 : 92
         return (
           <Pop key={i} at={at} cx={540} cy={y + 105}>
@@ -364,7 +366,7 @@ export const Cards: React.FC = () => {
 export const Versus: React.FC = () => {
   const { scene, on } = useScene(); const s = scene as Of<'versus'>
   const frame = useCurrentFrame()
-  const hlAt = on(s.on?.headline, 0.04)
+  const hlAt = Math.min(on(s.on?.headline, 0.04), 4)
   const hl = progress(frame, hlAt, 10)
   const leftAt = on(s.on?.left, 0.4), rightAt = on(s.on?.right, 0.68)
   const answerAt = on(s.on?.answer, 0.15)
@@ -445,7 +447,7 @@ export const Checklist: React.FC = () => {
   return (
     <Stage>
       <Kicker text={s.kicker} />
-      {s.items.map((it, i) => <CheckRow key={i} i={i} n={n} title={it.title} detail={it.detail} icon={it.icon} a={on(s.on?.items?.[i], 0.08 + i * (0.8 / n))} />)}
+      {s.items.map((it, i) => <CheckRow key={i} i={i} n={n} title={it.title} detail={it.detail} icon={it.icon} a={i === 0 ? Math.min(on(s.on?.items?.[i], 0.08), 12) : on(s.on?.items?.[i], 0.08 + i * (0.8 / n))} />)}
     </Stage>
   )
 }
@@ -457,7 +459,7 @@ export const Timeline: React.FC = () => {
   const n = s.events.length
   const gap = n === 3 ? 280 : 215
   const y0 = 400
-  const ats = s.events.map((_, i) => on(s.on?.events?.[i], 0.04 + i * (0.8 / n)))
+  const ats = s.events.map((_, i) => (i === 0 ? Math.min(on(s.on?.events?.[i], 0.04), 4) : on(s.on?.events?.[i], 0.04 + i * (0.8 / n))))
   const lineP = progress(frame, ats[0], Math.max(10, ats[n - 1] - ats[0] + 10))
   return (
     <Stage>
@@ -512,7 +514,7 @@ export const Cta: React.FC = () => {
         </g>
         <Txt x={540 + 22} y={602} size={34} weight={800} color={look.blue} textAnchor="middle">{BRAND.url}</Txt>
       </Pop>
-      <Pop at={rowsAt - S(0.6)} cx={540} cy={870}>
+      <Pop at={rowsAt - S(0.2)} cx={540} cy={870}>
         <Card x={140} y={660} w={800} h={110 + s.rows.length * 76 + 50} r={44}>
           <Txt x={44} y={70} size={23} weight={800} color={look.muted} style={{ letterSpacing: '0.14em' }}>EXAMPLE · YOUR CUSTOMERS' QUESTIONS</Txt>
           {s.rows.map((r, i) => {
