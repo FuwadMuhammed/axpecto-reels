@@ -1,0 +1,218 @@
+{
+  "title": "The dentist AI kept sending to the old address",
+  "category": "local",
+  "summary": "Local AI answers are built from what the web says about a business, so clashing or outdated name, address, hours and reviews can make AI repeat old details.",
+  "sources": [
+    "Google Search Central: Google Business Profile guidelines on accurate business information",
+    "Google Business Profile Help: Tips to improve your local ranking (relevance, distance, prominence)",
+    "Google Business Profile Help: Read and reply to reviews"
+  ],
+  "scenes": [
+    {
+      "type": "hook",
+      "voice": "A dentist moved across town. AI kept sending patients to the old address.",
+      "kicker": "Local story",
+      "headline": "AI sent patients to the old",
+      "reveal": "address.",
+      "stamp": "LOCAL",
+      "mood": "surprised"
+    },
+    {
+      "type": "chat",
+      "voice": "Someone asks ChatGPT, Perplexity or Gemini for the best dentist near me. The answer comes from what the web says about each clinic.",
+      "kicker": "Near me",
+      "question": "Best dentist near me?",
+      "assistants": [
+        "ChatGPT",
+        "Perplexity",
+        "Gemini"
+      ],
+      "answerTitle": "Maple Dental, Main St",
+      "answerSub": "Open until 9 pm today",
+      "links": true,
+      "emph": [
+        "web",
+        "says"
+      ],
+      "mood": "think"
+    },
+    {
+      "type": "browser",
+      "voice": "An old directory still shows the old address and hours. Another site has a different phone number. The details clash.",
+      "kicker": "The problem",
+      "url": "oldlistings.example",
+      "title": "Maple Dental",
+      "visitor": true,
+      "reaction": "?",
+      "on": {
+        "page": "directory"
+      },
+      "emph": [
+        "address",
+        "clash"
+      ],
+      "mood": "puzzled"
+    },
+    {
+      "type": "versus",
+      "voice": "When details match everywhere, AI can trust them. When they clash, it may guess.",
+      "kicker": "The turn",
+      "headline": {
+        "left": "Matching",
+        "sign": "vs",
+        "right": "Clashing"
+      },
+      "left": {
+        "title": "Matching",
+        "sub": "Same name, address, phone",
+        "icon": "check"
+      },
+      "right": {
+        "title": "Clashing",
+        "sub": "Old hours, old address",
+        "icon": "warning"
+      },
+      "on": {
+        "left": "match",
+        "right": "clash"
+      },
+      "emph": [
+        "guess"
+      ],
+      "mood": "smile"
+    },
+    {
+      "type": "cards",
+      "voice": "Three things feed local answers. Name, address and phone. Opening hours. And reviews, which show what patients really say.",
+      "kicker": "What feeds it",
+      "cards": [
+        {
+          "big": "NAP",
+          "label": "Name, address, phone",
+          "line": "Same everywhere"
+        },
+        {
+          "big": "HRS",
+          "label": "Opening hours",
+          "line": "Update after changes"
+        },
+        {
+          "big": "REV",
+          "label": "Reviews",
+          "line": "Recent and specific"
+        }
+      ],
+      "highlight": [
+        0,
+        1,
+        2
+      ],
+      "on": {
+        "cards": [
+          "address",
+          "hours",
+          "reviews"
+        ]
+      },
+      "mood": "happy"
+    },
+    {
+      "type": "checklist",
+      "voice": "Try this today. Compare your hours and phone across directories. Then ask an assistant about your clinic and note what is wrong.",
+      "kicker": "Check today",
+      "items": [
+        {
+          "title": "Compare listings",
+          "detail": "Hours, phone, address",
+          "icon": "search"
+        },
+        {
+          "title": "Fix what differs",
+          "detail": "Update every old listing",
+          "icon": "clock"
+        },
+        {
+          "title": "Ask AI about you",
+          "detail": "Note what it gets wrong",
+          "icon": "chat"
+        }
+      ],
+      "on": {
+        "items": [
+          "Compare",
+          "hours",
+          "assistant"
+        ]
+      },
+      "mood": "wink"
+    },
+    {
+      "type": "cta",
+      "voice": "Want to see what AI really says about your business? Try Axpecto. It asks AI what your customers ask, and shows who gets recommended.",
+      "kicker": "Try Axpecto",
+      "question": "What does AI say about you?",
+      "rows": [
+        {
+          "assistant": "ChatGPT",
+          "ok": true
+        },
+        {
+          "assistant": "Perplexity",
+          "ok": false
+        },
+        {
+          "assistant": "Gemini",
+          "ok": true
+        }
+      ],
+      "on": {
+        "brand": "Axpecto",
+        "rows": "recommended"
+      },
+      "mood": "smile"
+    }
+  ],
+  "post": {
+    "caption": "Local AI answers are built from what the web says about a business. If an old directory lists a former address or the wrong hours, AI can repeat it. Keep your name, address, phone, hours and reviews consistent, then check what assistants actually say. You can do that at axpecto.com.",
+    "hashtags": [
+      "#axpecto",
+      "#localseo",
+      "#seo",
+      "#geo",
+      "#aisearch",
+      "#digitalmarketing"
+    ],
+    "youtubeTitle": "Why AI sends people to your old address",
+    "xText": "AI answers for 'best dentist near me' are built from what the web says about you. Old listings can mean old details. Check yours: axpecto.com"
+  },
+  "carousel": {
+    "cover": "Why AI sends people to your old address",
+    "slides": [
+      {
+        "title": "Local answers come from the web",
+        "body": "For 'best dentist near me', assistants draw on what many sources say about each business."
+      },
+      {
+        "title": "Old listings linger",
+        "body": "A forgotten directory can still show a former address, old hours or a different phone number."
+      },
+      {
+        "title": "Clashing details cause guesses",
+        "body": "When sources disagree, an AI answer may pick one version, and it may be the outdated one."
+      },
+      {
+        "title": "Check these three things",
+        "body": "Name, address and phone. Opening hours, including holidays. Recent, specific reviews."
+      },
+      {
+        "title": "Then ask AI about you",
+        "body": "Ask assistants the questions customers ask, and note anything they get wrong."
+      }
+    ],
+    "caption": "Being found locally now includes being described correctly by AI. Start by matching your business details across every listing, then ask assistants about your business and read the answers. Find out more at axpecto.com."
+  },
+  "story": {
+    "kicker": "New reel",
+    "line": "AI kept sending patients to the old address. Why?"
+  }
+}
