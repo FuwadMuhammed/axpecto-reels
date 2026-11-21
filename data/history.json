@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "date": "2026-11-21-1900",
+    "title": "Mentioned by AI is not the same as cited",
+    "category": "myths",
+    "summary": "Myth: if AI names your business you are visible; in truth a mention comes from the model's memory, while a citation means your page was the source, and crawler access matters.",
+    "status": "test"
+  }
+]

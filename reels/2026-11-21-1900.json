@@ -1,0 +1,183 @@
+{
+  "category": "myths",
+  "title": "Mentioned by AI is not the same as cited",
+  "summary": "Myth: if AI names your business you are visible; in truth a mention comes from the model's memory, while a citation means your page was the source, and crawler access matters.",
+  "sources": [
+    "Perplexity: answers show numbered source citations (product behaviour, perplexity.ai)",
+    "Google Search Central: AI features and your website (AI Overviews show links to supporting pages)",
+    "Google Search Central: Introduction to robots.txt",
+    "OpenAI: Overview of OpenAI crawlers (GPTBot, OAI-SearchBot) and robots.txt controls"
+  ],
+  "scenes": [
+    {
+      "type": "hook",
+      "voice": "AI can name your business without ever reading your website.",
+      "kicker": "Myth",
+      "headline": "AI can name you without",
+      "reveal": "reading",
+      "stamp": "MYTH",
+      "mood": "puzzled"
+    },
+    {
+      "type": "chat",
+      "voice": "Ask ChatGPT for the best running shop in town. It names Stride and Co. But where did that answer come from?",
+      "kicker": "The good news?",
+      "question": "Best running shop in Leeds?",
+      "assistants": [
+        "ChatGPT"
+      ],
+      "answerTitle": "Stride & Co.",
+      "answerSub": "Named from memory, no source",
+      "emph": [
+        "names"
+      ],
+      "on": {
+        "ask": "ChatGPT",
+        "answer": "names"
+      },
+      "mood": "think"
+    },
+    {
+      "type": "versus",
+      "voice": "A mention comes from the model's memory. A citation means it used your page as its source. They are not the same.",
+      "kicker": "The turn",
+      "headline": {
+        "left": "Mention",
+        "sign": "≠",
+        "right": "Citation"
+      },
+      "left": {
+        "title": "Mentioned",
+        "sub": "From the model's memory",
+        "icon": "memory"
+      },
+      "right": {
+        "title": "Cited",
+        "sub": "Your page was the source",
+        "icon": "link"
+      },
+      "emph": [
+        "memory",
+        "source"
+      ],
+      "on": {
+        "left": "memory",
+        "right": "citation"
+      },
+      "mood": "smile"
+    },
+    {
+      "type": "browser",
+      "voice": "Before a page can be cited, AI crawlers must reach it. Some sites block them in robots.txt, often by accident.",
+      "kicker": "Blocked?",
+      "url": "stride.example/robots.txt",
+      "title": "Stride & Co.",
+      "crawler": true,
+      "reaction": "?",
+      "emph": [
+        "crawlers",
+        "block"
+      ],
+      "on": {
+        "crawler": "crawlers",
+        "page": "robots.txt"
+      },
+      "mood": "surprised"
+    },
+    {
+      "type": "chat",
+      "voice": "Perplexity shows numbered sources beside its answers. Google AI Overviews shows links to supporting pages. Those are citations you can read.",
+      "kicker": "Citations",
+      "question": "Best running shoes for flat feet?",
+      "assistants": [
+        "Perplexity",
+        "AI Overviews"
+      ],
+      "answerTitle": "Three shoes suggested",
+      "answerSub": "Sources linked beside the answer",
+      "links": true,
+      "emph": [
+        "sources",
+        "citations"
+      ],
+      "on": {
+        "ask": "Perplexity",
+        "links": "links",
+        "answer": "citations"
+      },
+      "mood": "happy"
+    },
+    {
+      "type": "checklist",
+      "voice": "Try three checks today. Ask your customers' questions. Read which sources get cited. Check robots.txt for blocked AI crawlers.",
+      "kicker": "Check today",
+      "items": [
+        {
+          "title": "Ask real questions",
+          "detail": "Use your customers' words",
+          "icon": "chat"
+        },
+        {
+          "title": "Read the sources",
+          "detail": "Who gets cited?",
+          "icon": "quote"
+        },
+        {
+          "title": "Check robots.txt",
+          "detail": "Are AI crawlers blocked?",
+          "icon": "check"
+        }
+      ],
+      "emph": [
+        "sources",
+        "cited"
+      ],
+      "on": {
+        "items": [
+          "Ask",
+          "sources",
+          "robots.txt"
+        ]
+      },
+      "mood": "smile"
+    },
+    {
+      "type": "cta",
+      "voice": "Want to see what AI really says about you? Try Axpecto. It asks AI what your customers ask, and shows who gets recommended.",
+      "kicker": "Your turn",
+      "question": "What does AI say about you?",
+      "rows": [
+        {
+          "assistant": "ChatGPT",
+          "ok": true
+        },
+        {
+          "assistant": "Perplexity",
+          "ok": false
+        },
+        {
+          "assistant": "Gemini",
+          "ok": true
+        }
+      ],
+      "on": {
+        "brand": "Axpecto",
+        "rows": "ask"
+      },
+      "mood": "wink"
+    }
+  ],
+  "post": {
+    "caption": "A common myth: if AI names your business, you are visible. But a mention comes from the model's memory, while a citation means your page was used as the source. Ask the questions your customers ask, read which sources are cited, and check that AI crawlers are not blocked in robots.txt. To see how AI answers about your business, visit axpecto.com.",
+    "hashtags": [
+      "#axpecto",
+      "#seo",
+      "#geo",
+      "#aeo",
+      "#aisearch",
+      "#digitalmarketing"
+    ],
+    "youtubeTitle": "Mentioned by AI vs cited by AI: the difference",
+    "xText": "Being mentioned by AI is not the same as being cited. A mention is memory; a citation means your page was the source. axpecto.com"
+  }
+}
