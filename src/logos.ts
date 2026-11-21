@@ -25,6 +25,10 @@ const ALIASES: Record<string, LogoName> = {
   adidas: 'adidas', "adidas'": 'adidas',
 }
 
+/** Search and AI platforms; every other logo is a consumer brand that can appear inside an answer card. */
+const PLATFORMS: ReadonlySet<LogoName> = new Set<LogoName>(['google', 'openai', 'perplexity', 'gemini', 'claude', 'youtube'])
+export const isConsumerBrand = (l: LogoName | undefined): l is LogoName => !!l && !PLATFORMS.has(l)
+
 export function logoFor(text: string): LogoName | undefined {
   const k = text.toLowerCase().replace(/[^a-z0-9' ]/g, '').trim()
   return ALIASES[k]

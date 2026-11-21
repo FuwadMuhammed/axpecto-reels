@@ -20,7 +20,7 @@ Never mention pricing, trials, or anything being free. Never promise rankings, t
 - llms.txt is a *proposed* convention, not a standard that assistants are known to follow: say so if you use it.
 - Do not claim how a specific AI model ranks sources beyond what its maker has published. Say "tends to" or explain the mechanism generally.
 - Businesses, sites and answers in examples are made up. Use names like "Stride & Co." and domains ending in `.example`. Never show a real company doing something bad unless it is well-documented history.
-- Real product names (Google, ChatGPT, Perplexity, Gemini, Claude, YouTube) are fine when you are stating facts about them. Say them by name in `voice` when it fits ("They ask ChatGPT, Perplexity or Gemini"): their real logos appear automatically in the captions and chips whenever they are named.
+- Every real brand shown must appear with its real logo. The only real brands you may name are the ones with a logo file: Google, ChatGPT, OpenAI, Perplexity, Gemini, Claude, YouTube, Nike, Adidas. Their logos appear automatically in captions, chips and answer cards. For any other company, use a made-up example name. State only well-documented facts about real brands, and label any sample AI answer as an example.
 
 # Story shape (120-150 spoken words, about 50-60 seconds, 7-9 scenes)
 

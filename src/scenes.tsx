@@ -5,7 +5,7 @@ import React from 'react'
 import { interpolate, useCurrentFrame } from 'remotion'
 import { BRAND } from './brand'
 import { Avatar, Crawler, Thought } from './characters'
-import { logoFor } from './logos'
+import { isConsumerBrand, LOGOS, logoFor } from './logos'
 import { look } from './look'
 import { progress, useSpring } from './motion'
 import { Bar, Card, Chip, Connector, Logo, Spark, Sparkle, Txt } from './premium'
@@ -275,7 +275,7 @@ export const Chat: React.FC = () => {
   const linksOut = progress(frame, ask - 8, 12)
   const mid = cx[Math.floor(n / 2)]
   // Consumer brands named in the answer replace the default map art.
-  const brands = s.answerTitle.split(/[\s,]+/).map(logoFor).filter((l): l is 'nike' | 'adidas' => l === 'nike' || l === 'adidas')
+  const brands = s.answerTitle.split(/[\s,]+/).map(w => logoFor(w)).filter(isConsumerBrand)
   return (
     <Stage>
       <Kicker text={s.kicker} />
@@ -313,7 +313,7 @@ export const Chat: React.FC = () => {
         <Card x={140} y={980} w={780} h={250} r={44}>
           <rect x={28} y={28} width={210} height={194} rx={30} fill={look.lav} />
           {brands.length ? brands.slice(0, 2).map((b, i, all) => (
-            <Logo key={b} name={b} x={133} y={all.length === 1 ? 125 : 78 + i * 88} size={b === 'nike' ? 48 : 68} />
+            <Logo key={b} name={b} x={133} y={all.length === 1 ? 125 : 78 + i * 88} size={Math.min(68, 140 / LOGOS[b].aspect)} />
           )) : <>
           <path d="M 48 120 Q 110 80 150 130 T 228 110" fill="none" stroke="#FFFFFF" strokeWidth={14} strokeLinecap="round" />
           <path d="M 70 210 L 120 60" stroke="#FFFFFF" strokeWidth={10} strokeLinecap="round" />
